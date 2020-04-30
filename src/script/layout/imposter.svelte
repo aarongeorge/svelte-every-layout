@@ -49,11 +49,9 @@
 		})
 	})
 
-	onDestroy(() => {layouts.destroy(instance)})
+	onDestroy(() => { layouts.destroy(instance) })
 
-	$: breakout, fixed, margin, instance && (() => {
-		layouts.onPropsUpdate(instance, {breakout, fixed, margin})
-	})()
+	$: breakout, fixed, margin, instance && (() => { layouts.onPropsUpdate(instance, {breakout, fixed, margin}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>

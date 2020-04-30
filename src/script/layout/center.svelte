@@ -52,11 +52,9 @@
 		})
 	})
 
-	onDestroy(() => {layouts.destroy(instance)})
+	onDestroy(() => { layouts.destroy(instance) })
 
-	$: andText, gutters, intrinsic, max, instance && (() => {
-		layouts.onPropsUpdate(instance, {andText, gutters, intrinsic, max})
-	})()
+	$: andText, gutters, intrinsic, max, instance && (() => { layouts.onPropsUpdate(instance, {andText, gutters, intrinsic, max}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>

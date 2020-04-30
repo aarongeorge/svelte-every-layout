@@ -40,11 +40,9 @@
 		})
 	})
 
-	onDestroy(() => {layouts.destroy(instance)})
+	onDestroy(() => { layouts.destroy(instance) })
 
-	$: borderWidth, padding, instance && (() => {
-		layouts.onPropsUpdate(instance, {borderWidth, padding})
-	})()
+	$: borderWidth, padding, instance && (() => { layouts.onPropsUpdate(instance, {borderWidth, padding}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>

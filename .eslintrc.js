@@ -27,14 +27,14 @@ module.exports = {
         'accessor-pairs': 'error',
         'array-bracket-newline': [
             'error',
-            {minItems: 2}
+            {minItems: 3}
         ],
         'array-bracket-spacing': [
             'error',
             'never'
         ],
         'array-callback-return': 'error',
-        'array-element-newline': 'error',
+        'array-element-newline': ['error', {'minItems': 3}],
         'arrow-body-style': [
             'error',
             'as-needed'
@@ -54,7 +54,8 @@ module.exports = {
         'block-spacing': 'error',
         'brace-style': [
             'error',
-            'stroustrup'
+			'stroustrup',
+			{'allowSingleLine': true}
         ],
         'callback-return': [
             'error',
@@ -185,7 +186,10 @@ module.exports = {
         'max-nested-callbacks': 'off',
         'max-params': 'off',
         'max-statements': 'off',
-        'max-statements-per-line': 'error',
+        'max-statements-per-line': [
+			'error',
+			{'max': 2}
+		],
         'multiline-ternary': 'off',
         'new-cap': 'error',
         'new-parens': 'error',
@@ -322,13 +326,7 @@ module.exports = {
         'no-unreachable': 'error',
         'no-unsafe-finally': 'error',
         'no-unsafe-negation': 'error',
-        'no-unused-expressions': [
-            'error',
-            {
-				allowShortCircuit: true,
-				allowTernary: true
-			}
-        ],
+        'no-unused-expressions': 'off',
         'no-unused-labels': 'error',
         'no-unused-vars': 'error',
         'no-use-before-define': 'error',
@@ -353,7 +351,7 @@ module.exports = {
             'error',
             'never'
         ],
-        'object-property-newline': 'error',
+        'object-property-newline': ['error', {'allowAllPropertiesOnSameLine': true}],
         'object-shorthand': 'error',
         'one-var': [
             'error',

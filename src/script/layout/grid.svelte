@@ -78,9 +78,7 @@
 		if (ro) ro.disconnect()
 	})
 
-	$: min, space, instance && (() => {
-		layouts.onPropsUpdate(instance, {min, space})
-	})()
+	$: min, space, instance && (() => { layouts.onPropsUpdate(instance, {min, space}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>

@@ -57,11 +57,9 @@
 		})
 	})
 
-	onDestroy(() => {layouts.destroy(instance)})
+	onDestroy(() => { layouts.destroy(instance) })
 
-	$: ratio, instance && (() => {
-		layouts.onPropsUpdate(instance, {ratio})
-	})()
+	$: ratio, instance && (() => { layouts.onPropsUpdate(instance, {ratio}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>

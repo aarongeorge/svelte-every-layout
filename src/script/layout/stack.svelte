@@ -49,11 +49,9 @@
 		})
 	})
 
-	onDestroy(() => {layouts.destroy(instance)})
+	onDestroy(() => { layouts.destroy(instance) })
 
-	$: recursive, space, splitAfter, instance && (() => {
-		layouts.onPropsUpdate(instance, {recursive, space, splitAfter})
-	})()
+	$: recursive, space, splitAfter, instance && (() => { layouts.onPropsUpdate(instance, {recursive, space, splitAfter}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>

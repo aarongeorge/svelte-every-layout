@@ -51,11 +51,9 @@
 		})
 	})
 
-	onDestroy(() => {layouts.destroy(instance)})
+	onDestroy(() => { layouts.destroy(instance) })
 
-	$: align, justify, space, instance && (() => {
-		layouts.onPropsUpdate(instance, {align, justify, space})
-	})()
+	$: align, justify, space, instance && (() => { layouts.onPropsUpdate(instance, {align, justify, space}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>

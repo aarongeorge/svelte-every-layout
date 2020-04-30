@@ -64,11 +64,9 @@
 		})
 	})
 
-	onDestroy(() => {layouts.destroy(instance)})
+	onDestroy(() => { layouts.destroy(instance) })
 
-	$: contentMin, noStretch, side, sideWidth, space, instance && (() => {
-		layouts.onPropsUpdate(instance, {contentMin, noStretch, side, sideWidth, space})
-	})()
+	$: contentMin, noStretch, side, sideWidth, space, instance && (() => { layouts.onPropsUpdate(instance, {contentMin, noStretch, side, sideWidth, space}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>

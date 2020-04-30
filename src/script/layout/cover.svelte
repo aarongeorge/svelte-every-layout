@@ -65,11 +65,9 @@
 		})
 	})
 
-	onDestroy(() => {layouts.destroy(instance)})
+	onDestroy(() => { layouts.destroy(instance) })
 
-	$: centered, space, minHeight, noPad, instance && (() => {
-		layouts.onPropsUpdate(instance, {centered, space, minHeight, noPad})
-	})()
+	$: centered, space, minHeight, noPad, instance && (() => { layouts.onPropsUpdate(instance, {centered, space, minHeight, noPad}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>

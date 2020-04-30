@@ -59,11 +59,9 @@
 		})
 	})
 
-	onDestroy(() => {layouts.destroy(instance)})
+	onDestroy(() => { layouts.destroy(instance) })
 
-	$: limit, space, threshold, instance && (() => {
-		layouts.onPropsUpdate(instance, {limit, space, threshold})
-	})()
+	$: limit, space, threshold, instance && (() => { layouts.onPropsUpdate(instance, {limit, space, threshold}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>

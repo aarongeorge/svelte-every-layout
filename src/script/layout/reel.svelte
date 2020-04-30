@@ -79,7 +79,7 @@
 					`.replace(/\s\s+/g, ' ').trim()
 		})
 
-		const toggleTabIndex = el => {el.setAttribute('tabindex', el.scrollWidth > el.clientWidth ? '0' : '-1')}
+		const toggleTabIndex = el => { el.setAttribute('tabindex', el.scrollWidth > el.clientWidth ? '0' : '-1') }
 
 		if ('ResizeObserver' in window) ro = new ResizeObserver(entries => toggleTabIndex(entries[0].target)).observe(ref)
 		if ('MutationObserver' in window) mo = new MutationObserver(entries => toggleTabIndex(entries[0].target)).observe(ref, {childList: true})
@@ -91,9 +91,7 @@
 		if (mo) mo.disconnect()
 	})
 
-	$: height, itemWidth, noBar, snap, snapAlign, space, instance && (() => {
-		layouts.onPropsUpdate(instance, {height, itemWidth, noBar, snap, snapAlign, space})
-	})()
+	$: height, itemWidth, noBar, snap, snapAlign, space, instance && (() => { layouts.onPropsUpdate(instance, {height, itemWidth, noBar, snap, snapAlign, space}) })()
 </script>
 
 <div bind:this={ref} class={$$props.class} style={$$props.style}>
