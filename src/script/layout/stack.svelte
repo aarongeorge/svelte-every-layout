@@ -1,5 +1,5 @@
 <script context='module'>
-	import {EveryLayout} from './index.ts'
+	import EveryLayout from './every-layout.ts'
 
 	const layouts = new EveryLayout()
 </script>
