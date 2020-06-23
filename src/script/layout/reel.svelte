@@ -7,8 +7,7 @@
 <script>
 	/**
 	* @component Reel
-	* @description
-	* A component for generic boxes/containers
+	* @description A component for generic boxes/containers
 	* @property {string} height=auto The height of the Reel itself
 	* @property {string} itemWidth=auto The width of each item (child element) in the Reel
 	* @property {boolean} noBar=false Whether to display the scrollbar
@@ -33,14 +32,7 @@
 	onMount(() => {
 		instance = layouts.mount({
 			el: ref,
-			props: {
-				height,
-				itemWidth,
-				noBar,
-				snap,
-				snapAlign,
-				space
-			},
+			props: {height, itemWidth, noBar, snap, snapAlign, space},
 			name: 'Box',
 			styleFn: ({id, props}) => `
 				div[data-id=${id}] {
@@ -72,11 +64,8 @@
 					margin-left: ${props.space};
 				}
 
-				${props.noBar ? `
-					div[data-id=${id}]::-webkit-scrollbar {
-						display: none;
-					}` : ''}
-					`.replace(/\s\s+/g, ' ').trim()
+				${props.noBar && `div[data-id=${id}]::-webkit-scrollbar { display: none; }`}
+			`.replace(/\s\s+/g, ' ').trim()
 		})
 
 		const toggleTabIndex = el => { el.setAttribute('tabindex', el.scrollWidth > el.clientWidth ? '0' : '-1') }
@@ -87,6 +76,7 @@
 
 	onDestroy(() => {
 		layouts.destroy(instance)
+
 		if (ro) ro.disconnect()
 		if (mo) mo.disconnect()
 	})
@@ -94,6 +84,6 @@
 	$: height, itemWidth, noBar, snap, snapAlign, space, instance && (() => { layouts.onPropsUpdate(instance, {height, itemWidth, noBar, snap, snapAlign, space}) })()
 </script>
 
-<div bind:this={ref} class={$$props.class} style={$$props.style}>
+<div bind:this={ref} {...$$restProps}>
 	<slot></slot>
 </div>

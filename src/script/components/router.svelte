@@ -7,6 +7,7 @@
 	import theCover from '~/script/pages/the-cover.svelte'
 	import theFrame from '~/script/pages/the-frame.svelte'
 	import theGrid from '~/script/pages/the-grid.svelte'
+	import theIcon from '~/script/pages/the-icon.svelte'
 	import theImposter from '~/script/pages/the-imposter.svelte'
 	import theReel from '~/script/pages/the-reel.svelte'
 	import theSidebar from '~/script/pages/the-sidebar.svelte'
@@ -21,6 +22,7 @@
 		'/the-cover': theCover,
 		'/the-frame': theFrame,
 		'/the-grid': theGrid,
+		'/the-icon': theIcon,
 		'/the-imposter': theImposter,
 		'/the-reel': theReel,
 		'/the-sidebar': theSidebar,

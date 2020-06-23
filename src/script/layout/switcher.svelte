@@ -7,8 +7,7 @@
 <script>
 	/**
 	* @component Switcher
-	* @description
-	* A component for switching directly between horizontal and vertical layouts at a given (container width-based) breakpoint or 'threshold'
+	* @description A component for switching directly between horizontal and vertical layouts at a given (container width-based) breakpoint or 'threshold'
 	* @property {integer} limit=4 A number representing the maximum number of items permitted for a horizontal layout
 	* @property {string} space=var(--s1) A CSS `margin` value
 	* @property {string} threshold=var(--measure) A CSS `width` value (representing the 'container breakpoint')
@@ -25,11 +24,7 @@
 	onMount(() => {
 		instance = layouts.mount({
 			el: ref,
-			props: {
-				limit,
-				space,
-				threshold
-			},
+			props: {limit, space, threshold},
 			name: 'Switcher',
 			styleFn: ({id, props}) => `
 				div[data-id=${id}] {
@@ -50,12 +45,13 @@
 					margin: calc(${props.space} / 2);
 				}
 
-				${limit ? `
+				${limit && `
 					div[data-id=${id}] > * > :nth-last-child(n+${parseInt(props.limit, 10) + 1}),
 					div[data-id=${id}] > * > :nth-last-child(n+${parseInt(props.limit, 10) + 1}) ~ * {
 						flex-basis: 100%;
-					}` : ''}
-				`.replace(/\s\s+/g, ' ').trim()
+					}
+				`}
+			`.replace(/\s\s+/g, ' ').trim()
 		})
 	})
 
@@ -64,7 +60,7 @@
 	$: limit, space, threshold, instance && (() => { layouts.onPropsUpdate(instance, {limit, space, threshold}) })()
 </script>
 
-<div bind:this={ref} class={$$props.class} style={$$props.style}>
+<div bind:this={ref} {...$$restProps}>
 	<div>
 		<slot></slot>
 	</div>

@@ -10,6 +10,7 @@
 		'the-cover',
 		'the-frame',
 		'the-grid',
+		'the-icon',
 		'the-imposter',
 		'the-reel',
 		'the-sidebar',

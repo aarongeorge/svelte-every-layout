@@ -7,8 +7,7 @@
 <script>
 	/**
 	* @component Sidebar
-	* @description
-	* A component for for placing two elements side-by-side. If space permits, the sidebar element has a set width, and the companion takes up the rest of the available horizontal space. If not, the elements are collapsed into a single column, each taking up 100% of the horizontal space.
+	* @description A component for for placing two elements side-by-side. If space permits, the sidebar element has a set width, and the companion takes up the rest of the available horizontal space. If not, the elements are collapsed into a single column, each taking up 100% of the horizontal space.
 	* @property {string} contentMin=50% A CSS **percentage** value. The minimum width of the content element in the horizontal configuration
 	* @property {boolean} noStretch=false Make the adjacent elements adopt their natural height
 	* @property {string} side=left Which element to treat as the sidebar (all values but "left" are considered "right")
@@ -29,18 +28,10 @@
 	onMount(() => {
 		instance = layouts.mount({
 			el: ref,
-			props: {
-				contentMin,
-				noStretch,
-				side,
-				sideWidth,
-				space
-			},
+			props: {contentMin, noStretch, side, sideWidth, space},
 			name: 'Sidebar',
 			styleFn: ({id, props}) => `
-				div[data-id=${id}] {
-					overflow: hidden;
-				}
+				div[data-id=${id}] { overflow: hidden; }
 
 				div[data-id=${id}] > * {
 					${props.noStretch ? 'align-items: flex-start;' : ''}
@@ -60,7 +51,7 @@
 					flex-grow: 999;
 					min-width: calc(${props.contentMin} - ${props.space});
 				}
-				`.replace(/\s\s+/g, ' ').trim()
+			`.replace(/\s\s+/g, ' ').trim()
 		})
 	})
 
@@ -69,7 +60,7 @@
 	$: contentMin, noStretch, side, sideWidth, space, instance && (() => { layouts.onPropsUpdate(instance, {contentMin, noStretch, side, sideWidth, space}) })()
 </script>
 
-<div bind:this={ref} class={$$props.class} style={$$props.style}>
+<div bind:this={ref} {...$$restProps}>
 	<div>
 		<slot></slot>
 	</div>

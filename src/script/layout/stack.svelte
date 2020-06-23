@@ -7,9 +7,7 @@
 <script>
 	/**
 	* @component Stack
-	* @description
-	* A component for injecting white space (margin) between flow
-	* (block) elements along a vertical axis.
+	* @description A component for injecting white space (margin) between flow (block) elements along a vertical axis.
 	* @property {boolean} recursive=false Whether the spaces apply recursively (i.e. regardless of nesting level)
 	* @property {string} space=var(--s1) A CSS `margin` value
 	* @property {number} splitAfter=null The element after which to _split_ the stack with an auto margin
@@ -26,11 +24,7 @@
 	onMount(() => {
 		instance = layouts.mount({
 			el: ref,
-			props: {
-				recursive,
-				space,
-				splitAfter
-			},
+			props: {recursive, space, splitAfter},
 			name: 'Stack',
 			styleFn: ({id, props}) => `
 				div[data-id=${id}] {
@@ -41,11 +35,11 @@
 
 				div[data-id=${id}]${props.recursive ? '' : ' >'} * + * { margin-top: ${props.space}; }
 
-				${props.splitAfter ? `
+				${props.splitAfter && `
 					div[data-id=${id}]:only-child { height: 100%; }
 					div[data-id=${id}] > :nth-child(${props.splitAfter}) { margin-bottom: auto; }
-				` : ''}
-				`.replace(/\s\s+/g, ' ').trim()
+				`}
+			`.replace(/\s\s+/g, ' ').trim()
 		})
 	})
 
@@ -54,6 +48,6 @@
 	$: recursive, space, splitAfter, instance && (() => { layouts.onPropsUpdate(instance, {recursive, space, splitAfter}) })()
 </script>
 
-<div bind:this={ref} class={$$props.class} style={$$props.style}>
+<div bind:this={ref} {...$$restProps}>
 	<slot></slot>
 </div>

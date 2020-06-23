@@ -7,8 +7,7 @@
 <script>
 	/**
 	 * @component Imposter
-	 * @description
-	 * A component to be positioned absolutely over any element
+	 * @description A component to be positioned absolutely over any element
 	 * @property {boolean} breakout=false Whether the element is allowed to break out of the container over which it is positioned
 	 * @property {string} margin=0 The minimum space between the element and the inside edges of the positioning container over which it is placed (where `breakout` is not applied)
 	 * @property {string} fixed=false Whether to position the element relative to the viewport
@@ -25,16 +24,10 @@
 	onMount(() => {
 		instance = layouts.mount({
 			el: ref,
-			props: {
-				breakout,
-				fixed,
-				margin
-			},
+			props: {breakout, fixed, margin},
 			name: 'Imposter',
 			styleFn: ({id, props}) => `
-				div[data-id=${id}] {
-					position: relative;
-				}
+				div[data-id=${id}] { position: relative; }
 
 				div[data-id=${id}] > [slot='imposter'] {
 					left: 50%;
@@ -45,7 +38,7 @@
 					top: 50%;
 					transform: translate(-50%, -50%);
 				}
-				`.replace(/\s\s+/g, ' ').trim()
+			`.replace(/\s\s+/g, ' ').trim()
 		})
 	})
 
@@ -54,7 +47,7 @@
 	$: breakout, fixed, margin, instance && (() => { layouts.onPropsUpdate(instance, {breakout, fixed, margin}) })()
 </script>
 
-<div bind:this={ref} class={$$props.class} style={$$props.style}>
+<div bind:this={ref} {...$$restProps}>
 	<slot name='content'></slot>
 	<slot name='imposter'></slot>
 </div>

@@ -7,9 +7,7 @@
 <script>
 	/**
 	* @component Frame
-	* @description
-	* A component for augmenting image ratios
-	* with a max-width value representing the typographic measure
+	* @description A component for augmenting image ratios with a max-width value representing the typographic measure
 	* @property {string} ratio=16:9 The element's aspect ratio
 	*/
 	import {onDestroy, onMount} from 'svelte'
@@ -52,7 +50,7 @@
 						object-fit: cover;
 						width: 100%;
 					}
-					`.replace(/\s\s+/g, ' ').trim()
+				`.replace(/\s\s+/g, ' ').trim()
 			}
 		})
 	})
@@ -62,6 +60,6 @@
 	$: ratio, instance && (() => { layouts.onPropsUpdate(instance, {ratio}) })()
 </script>
 
-<div bind:this={ref} class={$$props.class} style={$$props.style}>
+<div bind:this={ref} {...$$restProps}>
 	<slot></slot>
 </div>

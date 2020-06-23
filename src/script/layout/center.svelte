@@ -7,9 +7,7 @@
 <script>
 	/**
 	* @component Center
-	* @description
-	* A component for centering a block-level element horizontally,
-	* with a max-width value representing the typographic measure
+	* @description A component for centering a block-level element horizontally, with a max-width value representing the typographic measure
 	* @property {boolean} andText=false center align the text too (`text-align: center`)
 	* @property {boolean} gutters=0 The minimum space on either side of the content
 	* @property {boolean} intrinsic=false Center child elements based on their content width
@@ -28,12 +26,7 @@
 	onMount(() => {
 		instance = layouts.mount({
 			el: ref,
-			props: {
-				andText,
-				gutters,
-				intrinsic,
-				max
-			},
+			props: {andText, gutters, intrinsic, max},
 			name: 'Center',
 			styleFn: ({id, props}) => `
 				div[data-id=${id}] {
@@ -48,7 +41,7 @@
 					${props.gutters ? `padding-right: ${props.gutters};` : ''}
 					${props.andText ? 'text-align: center;' : ''}
 				}
-				`.replace(/\s\s+/g, ' ').trim()
+			`.replace(/\s\s+/g, ' ').trim()
 		})
 	})
 
@@ -57,6 +50,6 @@
 	$: andText, gutters, intrinsic, max, instance && (() => { layouts.onPropsUpdate(instance, {andText, gutters, intrinsic, max}) })()
 </script>
 
-<div bind:this={ref} class={$$props.class} style={$$props.style}>
+<div bind:this={ref} {...$$restProps}>
 	<slot></slot>
 </div>

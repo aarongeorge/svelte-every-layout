@@ -7,8 +7,7 @@
 <script>
 	/**
 	* @component Box
-	* @description
-	* A component for generic boxes/containers
+	* @description A component for generic boxes/containers
 	* @property {string} borderWidth=var(--border-thin) A CSS `border-width` value
 	* @property {string} padding=var(--s1) A CSS `padding` value
 	*/
@@ -23,10 +22,7 @@
 	onMount(() => {
 		instance = layouts.mount({
 			el: ref,
-			props: {
-				borderWidth,
-				padding
-			},
+			props: {borderWidth, padding},
 			name: 'Box',
 			styleFn: ({id, props}) => `
 				div[data-id=${id}] {
@@ -36,7 +32,7 @@
 					outline-offset: calc(${props.borderWidth} * -1);
 					padding: ${props.padding};
 				}
-				`.replace(/\s\s+/g, ' ').trim()
+			`.replace(/\s\s+/g, ' ').trim()
 		})
 	})
 
@@ -45,6 +41,6 @@
 	$: borderWidth, padding, instance && (() => { layouts.onPropsUpdate(instance, {borderWidth, padding}) })()
 </script>
 
-<div bind:this={ref} class={$$props.class} style={$$props.style}>
+<div bind:this={ref} {...$$restProps}>
 	<slot></slot>
 </div>
