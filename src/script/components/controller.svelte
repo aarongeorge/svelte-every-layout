@@ -15,7 +15,7 @@
 	}))
 	const previousPropObjs = [...propObjs]
 
-	$: propObjs, controlledProps.set(Object.values(propObjs).reduce((obj, prop) => (previousPropObjs[prop.name] !== prop.value) && ({ ...obj, [prop.name]: prop.value }), {}))
+	$: propObjs, controlledProps.set(Object.values(propObjs).reduce((obj, prop) => (previousPropObjs[prop.name] !== prop.value) && ({...obj, [prop.name]: prop.value}), {}))
 </script>
 
 <div class='border-white border-8 bg-black text-white'>
